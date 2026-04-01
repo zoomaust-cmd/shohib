@@ -7,8 +7,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    base: '/soh/', // 🔥 هذا هو الحل
-
+    base: '/' ,
     plugins: [react(), tailwindcss()],
 
     resolve: {
