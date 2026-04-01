@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-export default async function handler(req: any, res: any) {
-  // فقط POST
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -22,16 +21,12 @@ export default async function handler(req: any, res: any) {
       contents: [{ role: "user", parts: [{ text: message }] }],
     });
 
-    return res.status(200).json({
+    res.status(200).json({
       text: response.text || "لا يوجد رد",
     });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("API ERROR:", error);
-
-    return res.status(500).json({
-      error: "Server error",
-      details: error.message,
-    });
+    res.status(500).json({ error: "Server error" });
   }
 }
